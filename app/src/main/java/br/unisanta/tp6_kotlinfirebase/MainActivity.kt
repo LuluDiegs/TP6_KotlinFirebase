@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         val welcome = findViewById<TextView>(R.id.welcomeText)
         welcome.text = "Bem-vindo(a), ${user.displayName ?: user.email}"
 
-        // Alterar nome
+       
         findViewById<Button>(R.id.btnChangeName).setOnClickListener {
             showChangeNameDialog { newName ->
                 val request = UserProfileChangeRequest.Builder()
@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // Alterar senha direto (com confirmação da senha atual)
+     
         findViewById<Button>(R.id.btnChangePasswordDirect).setOnClickListener {
             showChangePasswordDialog()
         }
@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // Deletar conta
+        
         findViewById<Button>(R.id.btnDeleteAccount).setOnClickListener {
             val userToDelete = auth.currentUser
             if (userToDelete == null) {
@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // Diálogo para alterar nome
+    
     private fun showChangeNameDialog(onConfirm: (String) -> Unit) {
         val input = EditText(this).apply {
             hint = "Novo nome"
@@ -109,7 +109,7 @@ class MainActivity : AppCompatActivity() {
             .show()
     }
 
-    // Diálogo para alterar senha direto
+  
     private fun showChangePasswordDialog() {
         val layout = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
@@ -154,7 +154,7 @@ class MainActivity : AppCompatActivity() {
                     return@setPositiveButton
                 }
 
-                // Reautentica com a senha atual
+                
                 val credential = EmailAuthProvider.getCredential(email, current)
                 user.reauthenticate(credential).addOnCompleteListener { reauth ->
                     if (reauth.isSuccessful) {
